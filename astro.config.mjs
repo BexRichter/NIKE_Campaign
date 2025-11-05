@@ -5,4 +5,6 @@ export default defineConfig({
   vite: {
     plugins: [tailwind()],
   },
+  base: "./",
+  output: "static",
 });
