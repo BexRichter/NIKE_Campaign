@@ -1,0 +1,216 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <style>
+    /* Override header text color for createabratz page */
+    nav * {
+      color: #4a4a4a !important;
+    }
+    nav button svg {
+      stroke: #4a4a4a !important;
+    }
+  </style>
+
+  <main class="relative w-full h-screen overflow-hidden bg-black-100">
+    <!-- Vignette overlay -->
+    <div class="pointer-events-none fixed inset-0 z-50" style="background: radial-gradient(circle, transparent 90%, rgba(0, 0, 0, 0.25) 100%);">
+    </div>
+
+    <!-- Full screen Chloe image -->
+    <img
+      src="/Chloe_Naked.png"
+      alt="Chloe Base Doll"
+      class="absolute inset-0 w-full h-full object-cover z-0"
+    />
+
+    <!-- Back button -->
+    <a href="/" class="fixed top-20 left-4 md:left-6 z-20 flex items-center group">
+      <img src="/ArrowsLeft.png" alt="Back" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20 group-hover:-translate-x-1 transition-transform" />
+    </a>
+
+    <!-- DROP 001 and subtitle -->
+    <div class="absolute left-4 md:left-28 lg:left-40 top-20 md:top-22 z-10">
+      <div class="flex flex-col">
+        <h2 class="text-[1.8rem] md:text-[2.2rem] lg:text-[2.5rem] font-['Anonymous Pro'] font-bold text-[#4a4a4a] leading-none">DROP 001</h2>
+        <span class="text-[10px] md:text-xs text-[#4a4a4a] tracking-wide">FAUX LEATHERS + BASE LAYERS</span>
+      </div>
+    </div>
+
+    <!-- Search bar with icon -->
+    <div class="absolute left-4 md:left-28 lg:left-40 top-36 md:top-40 w-[calc(100%-2rem)] md:w-[340px] max-w-[340px] z-10">
+      <div class="relative flex items-center bg-white border-[0.5px] border-[#4a4a4a]">
+        <div class="pl-3 pr-2">
+          <svg class="w-4 md:w-5 h-4 md:h-5 text-[#4a4a4a]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+          </svg>
+        </div>
+        <input 
+          type="text" 
+          placeholder="SEARCH ITEMS..." 
+          class="flex-1 px-2 py-2 bg-transparent text-[#4a4a4a] placeholder-[#4a4a4a] focus:outline-none text-xs md:text-sm font-['Anonymous Pro'] tracking-wide"
+        />
+      </div>
+    </div>
+
+    <!-- Chrome Model Selector -->
+ <div class="fixed top-52 md:top-60 lg:top-68 right-4 md:right-20 lg:right-32 flex items-center gap-1 md:gap-2 z-20">
+  <button id="arrowLeft" class="hover:scale-125 transition-transform duration-200 translate-x-2 md:translate-x-4">
+    <img src="/ArrowsLeft.png" alt="Previous" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20" />
+  </button>
+  <img id="modelChrome" src="/Chloe_Chrome.png" alt="CHLOE" class="h-40 md:h-52 lg:h-60 select-none pointer-events-none" />
+  <button id="arrowRight" class="hover:scale-125 transition-transform duration-200 -translate-x-2 md:-translate-x-4">
+    <img src="/ArrowsRight.png" alt="Next" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20" />
+  </button>
+</div>
+
+    <!-- Scrollable outfit grid -->
+    <div class="absolute left-4 md:left-28 lg:left-40 top-48 md:top-52 w-[calc(100%-2rem)] md:w-[340px] max-w-[340px] h-[300px] md:h-[380px] lg:h-[420px] overflow-y-auto bg-white/10 backdrop-blur-md border border-black/20">
+      <div class="grid grid-cols-2 gap-4 p-3" id="outfitGrid">
+        {[
+          { file: 'Green_Bottom_Square.png', title: 'Neon Track Pants', price: '$48', description: 'High-waist athletic fit' },
+          { file: 'Green_Top_Square.png', title: 'Crop Training Top', price: '$52', description: 'Moisture-wicking fabric' },
+          { file: 'Jacket_Green_Square.png', title: 'Sport Windbreaker', price: '$42', description: 'Lightweight protection' },
+          { file: 'Black_top_square.png', title: 'Essential Tank', price: '$52', description: 'Four-way stretch' },
+          { file: 'Black_Bottom_square.png', title: 'Power Leggings', price: '$48', description: 'Sculpting fit' },
+          { file: 'Vest_product_Square.png', title: 'Performance Vest', price: '$42', description: 'Thermal regulation' },
+          { file: 'Bag_Square.png', title: 'Mini Duffle', price: '$35', description: 'Water-resistant' },
+          { file: 'PinkShoes_Square.png', title: 'Neon Runners', price: '$79', description: 'Cloud cushioning' },
+          { file: 'BlackShoes_Square.png', title: 'Training Shoes', price: '$65', description: 'Enhanced stability' },
+        ].map((item) => (
+          <div 
+            class="relative aspect-square bg-transparent group cursor-pointer transition-all hover:scale-[1.02] border border-black"
+            style="box-shadow: 0 8px 16px rgba(0,0,0,0.12), 0 2px 4px rgba(0,0,0,0.08);"
+            data-item-id={item.file}
+          >
+            <img 
+              src={`/${item.file}`} 
+              alt={item.title}
+              class="w-full h-full object-cover"
+            />
+            <div class="absolute top-3 right-3 w-7 h-7 bg-gray-700 rounded-full flex items-center justify-center opacity-0 transition-opacity" data-checkmark>
+              <svg class="w-5 h-5 text-gray-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path d="M5 13l4 4L19 7" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+              </svg>
+            </div>
+            <div class="absolute inset-x-0 bottom-0 py-0.5 px-2 opacity-0 group-hover:opacity-100 transition-opacity bg-white/60 text-center">
+              <div class="font-['Anonymous Pro'] text-xs uppercase tracking-wide">{item.title}</div>
+              <div class="font-['Anonymous Pro'] text-[10px] text-gray-800 mt-0.5">{item.description}</div>
+              <div class="font-['Anonymous Pro'] text-xs">{item.price}</div>
+            </div>
+          </div>
+        ))}
+      </div>
+    </div>
+
+    <!-- Bottom buttons -->
+    <div class="fixed bottom-16 md:bottom-14 lg:bottom-16 left-4 md:left-28 lg:left-40 w-[calc(100%-2rem)] md:w-[340px] max-w-[340px] flex gap-2 md:gap-3">
+      <a href="/box" class="flex-1 px-3 md:px-4 py-2 md:py-3 bg-gray-300 hover:bg-gray-400 active:scale-95 transition-all duration-200 text-[#4a4a4a] uppercase text-[10px] md:text-xs font-['Anonymous Pro'] tracking-wider text-center shadow-md">
+        SAVE OUTFIT
+      </a>
+      <a href="/box" class="flex-1 px-3 md:px-4 py-2 md:py-3 bg-gray-400 text-white hover:bg-gray-500 active:scale-95 transition-all duration-200 flex items-center justify-center gap-1 md:gap-2 uppercase text-[10px] md:text-xs font-['Anonymous Pro'] tracking-wider shadow-md">
+        <svg class="w-3 md:w-4 h-3 md:h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+        </svg>
+        GO TO CHECKOUT
+      </a>
+    </div>
+
+    <script>
+      // Chrome Model Selector Functionality
+      const chromeModels = [
+        { name: 'CHLOE', chrome: '/Chloe_Chrome.png', naked: '/Chloe_Naked.png' },
+        { name: 'JADE', chrome: '/Jade_Chrome.png', naked: '/Jade_Naked..jpg' },
+        { name: 'YASMIN', chrome: '/Yasmin_Chrome.png', naked: '/Yasmin_Naked.jpg' }
+      ];
+      let currentModel = 0;
+      const arrowLeft = document.getElementById('arrowLeft');
+      const arrowRight = document.getElementById('arrowRight');
+      const modelChrome = document.getElementById('modelChrome');
+      const modelImage = document.querySelector('img[alt$="Base Doll"]');
+
+      function updateModel() {
+        modelChrome.src = chromeModels[currentModel].chrome;
+        modelChrome.alt = chromeModels[currentModel].name;
+        if (modelImage) {
+          modelImage.src = chromeModels[currentModel].naked;
+          modelImage.alt = chromeModels[currentModel].name + ' Base Doll';
+        }
+      }
+
+      arrowLeft?.addEventListener('click', () => {
+        currentModel = (currentModel - 1 + chromeModels.length) % chromeModels.length;
+        updateModel();
+      });
+      arrowRight?.addEventListener('click', () => {
+        currentModel = (currentModel + 1) % chromeModels.length;
+        updateModel();
+      });
+
+      // Item selection functionality with outfit progression
+      const selectedItems = new Set();
+      const outfitGrid = document.getElementById('outfitGrid');
+      
+      // Map specific items to outfit progression images
+      const outfitMap = {
+        'Green_Top_Square.png': '/Chloe_1item.jpg',
+        'Green_Bottom_Square.png': '/Chloe_2items.jpg',
+        'BlackShoes_Square.png': '/Chloe_3items.jpg',
+        'Vest_product_Square.png': '/Chloe_4items.jpg',
+        'Jacket_Green_Square.png': '/Chloe_5items.jpg'
+      };
+      
+      if (outfitGrid) {
+        outfitGrid.addEventListener('click', (e) => {
+          const itemEl = (e.target).closest('[data-item-id]');
+          if (!itemEl) return;
+          const itemId = itemEl.getAttribute('data-item-id');
+          const checkmark = itemEl.querySelector('[data-checkmark]');
+          
+          if (selectedItems.has(itemId)) {
+            selectedItems.delete(itemId);
+            checkmark.style.opacity = '0';
+          } else {
+            selectedItems.add(itemId);
+            checkmark.style.opacity = '1';
+          }
+          
+          // Update main image if this item has an outfit progression
+          if (outfitMap[itemId] && modelImage) {
+            modelImage.src = outfitMap[itemId];
+          }
+          
+          // If nothing is selected, revert to naked image
+          if (selectedItems.size === 0 && modelImage) {
+            modelImage.src = chromeModels[currentModel].naked;
+          }
+        });
+      }
+    </script>
+
+    <style>
+      /* Custom scrollbar styles */
+      ::-webkit-scrollbar {
+        width: 8px;
+        left: 0;
+      }
+      
+      ::-webkit-scrollbar-track {
+        background: #e5e7eb;
+        border-radius: 0;
+      }
+      
+      ::-webkit-scrollbar-thumb {
+        background: #9ca3af;
+        border-radius: 0;
+      }
+
+      /* Hover text transition */
+      .group:hover .group-hover\:opacity-100 {
+        transition-delay: 150ms;
+      }
+    </style>
+
+  </main>
+</Layout>

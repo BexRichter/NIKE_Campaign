@@ -1,0 +1,91 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Createabratz from "./createabratz.astro";
+---
+<Layout>
+ <main class="relative h-screen overflow-hidden">
+  <img
+    src="/Bratz_Index3.jpg"
+    alt="Bratz Index Background"
+    class="absolute inset-0 w-full h-full object-cover -z-10"
+  />
+
+  <div class="absolute top-[8vh] md:top-[6vh] lg:top-[4vh] left-1/2 -translate-x-1/2 z-10 p-4 md:p-6 lg:p-10">
+    <img
+      src="/Bratz_Logo1.png"
+      alt="Bratz Logo"
+      class="w-[35vw] md:w-[25vw] lg:w-[20vw] max-w-[500px] h-auto object-contain"
+    />
+  </div>
+
+  <!-- Typewriter animated text under logo -->
+  <div class="absolute top-[24vh] md:top-[24vh] lg:top-[26vh] left-1/2 -translate-x-1/2 z-20">
+    <div id="typewriter" class="font-['Anonymous Pro'] text-xs md:text-sm tracking-widest text-gray-200 opacity-0 transition-opacity duration-1000"></div>
+  </div>
+
+
+
+  <script>
+    // Typewriter effect with type in and type out animation
+    const typewriter = document.getElementById('typewriter');
+    const text = 'explore collection';
+    let isClickable = false;
+
+    function typeInAndOut() {
+      if (!typewriter) return;
+      
+      // Fade in the container
+      typewriter.style.opacity = '1';
+      typewriter.textContent = '';
+      
+      let index = 0;
+      
+      // Type in
+      const typeIn = setInterval(() => {
+        if (index < text.length) {
+          typewriter.textContent += text.charAt(index);
+          index++;
+        } else {
+          clearInterval(typeIn);
+          
+          // Make it clickable while visible
+          isClickable = true;
+          typewriter.classList.add('cursor-pointer', 'hover:underline');
+          
+          // Wait 2 seconds, then type out
+          setTimeout(() => {
+            let eraseIndex = text.length;
+            
+            // Type out (backwards)
+            const typeOut = setInterval(() => {
+              if (eraseIndex > 0) {
+                typewriter.textContent = text.substring(0, eraseIndex - 1);
+                eraseIndex--;
+              } else {
+                clearInterval(typeOut);
+                typewriter.classList.remove('cursor-pointer', 'hover:underline');
+                isClickable = false;
+                
+                // Wait 2 seconds, then restart the cycle
+                setTimeout(typeInAndOut, 2000);
+              }
+            }, 50); // Faster erase (50ms per character)
+          }, 2000); // Pause for 2 seconds before erasing
+        }
+      }, 100); // 100ms per character for typing in
+    }
+
+    // Handle click
+    typewriter?.addEventListener('click', () => {
+      if (isClickable) {
+        window.location.href = '/createabratz';
+      }
+    });
+
+    // Start animation after initial delay
+    setTimeout(typeInAndOut, 2000);
+  </script>
+
+</main>
+
+</Layout>

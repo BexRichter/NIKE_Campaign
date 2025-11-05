@@ -1,0 +1,172 @@
+---
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <style>
+    /* Override footer text color for box page */
+    footer * {
+      color: #4a4a4a !important;
+    }
+  </style>
+
+  <div class="flex flex-col items-center justify-center h-screen bg-gradient-to-b from-[#3a4550] via-[#8c9ba8] to-[#dce2e8] relative overflow-hidden pt-16">
+    <!-- Back button -->
+    <a href="/createabratz" class="fixed top-20 left-4 md:left-6 z-30 flex items-center group cursor-pointer">
+      <img src="/ArrowsLeft.png" alt="Back" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20 group-hover:-translate-x-1 transition-transform" />
+    </a>
+
+    <div class="relative flex items-center justify-center w-full px-4 mt-4 md:mt-8 lg:mt-12 mb-6 md:mb-8 lg:mb-12">
+      <!-- Model name image above box - positioned absolutely -->
+      <img id="modelNameImg" src="/ChloeX.png" alt="Chloe" class="absolute -top-4 md:-top-6 lg:-top-8 left-1/2 -translate-x-1/2 z-20 h-8 md:h-10 lg:h-12 object-contain" />
+      <!-- Side boxes left - extended beyond viewport -->
+      <div class="hidden md:flex items-center gap-2 lg:gap-4 absolute left-0 top-1/2 -translate-y-1/2 -translate-x-16 lg:-translate-x-24">
+        <img id="sideBox-5" class="w-12 lg:w-16 h-20 lg:h-28 object-cover box-shadow transition-all duration-300 ease-in-out opacity-40 scale-[0.65] hover:scale-75 hover:opacity-60 cursor-pointer" />
+        <img id="sideBox-4" class="w-13 lg:w-17 h-21 lg:h-29 object-cover box-shadow transition-all duration-300 ease-in-out opacity-45 scale-[0.70] hover:scale-80 hover:opacity-65 cursor-pointer" />
+        <img id="sideBox-3" class="w-14 lg:w-18 h-22 lg:h-30 object-cover box-shadow transition-all duration-300 ease-in-out opacity-50 scale-75 hover:scale-85 hover:opacity-70 cursor-pointer" />
+        <img id="sideBox-2" class="w-16 lg:w-20 h-24 lg:h-32 object-cover box-shadow transition-all duration-300 ease-in-out opacity-60 scale-[0.85] hover:scale-95 hover:opacity-75 cursor-pointer" />
+        <img id="sideBox-1" class="w-18 lg:w-24 h-28 lg:h-36 object-cover box-shadow transition-all duration-300 ease-in-out opacity-75 scale-[0.92] hover:scale-100 hover:opacity-85 cursor-pointer" />
+      </div>
+
+      <!-- Arrow left -->
+      <button id="prevBtn" class="absolute left-[5%] md:left-[20%] lg:left-[30%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 transition-transform duration-200">
+        <img src="/ArrowsLeft.png" alt="Previous" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20" />
+      </button>
+
+      <!-- Main box -->
+      <div class="relative mx-4 md:mx-6 lg:mx-8">
+        <img id="mainBox" class="w-[306px] md:w-[396px] lg:w-[468px] h-auto object-contain box-shadow transition-all duration-700 ease-in-out scale-100" />
+      </div>
+
+      <!-- Arrow right -->
+      <button id="nextBtn" class="absolute right-[5%] md:right-[20%] lg:right-[30%] top-1/2 -translate-y-1/2 z-10 hover:scale-110 transition-transform duration-200">
+        <img src="/ArrowsRight.png" alt="Next" class="w-12 md:w-16 lg:w-20 h-12 md:h-16 lg:h-20" />
+      </button>
+
+      <!-- Side boxes right - extended beyond viewport -->
+      <div class="hidden md:flex items-center gap-2 lg:gap-4 absolute right-0 top-1/2 -translate-y-1/2 translate-x-16 lg:translate-x-24">
+        <img id="sideBox1" class="w-18 lg:w-24 h-28 lg:h-36 object-cover box-shadow transition-all duration-300 ease-in-out opacity-75 scale-[0.92] hover:scale-100 hover:opacity-85 cursor-pointer" />
+        <img id="sideBox2" class="w-16 lg:w-20 h-24 lg:h-32 object-cover box-shadow transition-all duration-300 ease-in-out opacity-60 scale-[0.85] hover:scale-95 hover:opacity-75 cursor-pointer" />
+        <img id="sideBox3" class="w-14 lg:w-18 h-22 lg:h-30 object-cover box-shadow transition-all duration-300 ease-in-out opacity-50 scale-75 hover:scale-85 hover:opacity-70 cursor-pointer" />
+        <img id="sideBox4" class="w-13 lg:w-17 h-21 lg:h-29 object-cover box-shadow transition-all duration-300 ease-in-out opacity-45 scale-[0.70] hover:scale-80 hover:opacity-65 cursor-pointer" />
+        <img id="sideBox5" class="w-12 lg:w-16 h-20 lg:h-28 object-cover box-shadow transition-all duration-300 ease-in-out opacity-40 scale-[0.65] hover:scale-75 hover:opacity-60 cursor-pointer" />
+      </div>
+    </div>
+
+      <!-- Price and Buy Button - positioned absolutely on top of image -->
+      <div class="absolute bottom-0 left-1/2 -translate-x-1/2 z-20 mb-16 md:mb-20 flex flex-col md:flex-row items-center justify-center gap-4 md:gap-8 px-4">
+        <button id="addToCartBtn" class="px-3 md:px-4 py-2 md:py-3 bg-gray-300 hover:bg-gray-400 active:scale-95 transition-all duration-200 font-['Anonymous Pro'] text-[10px] md:text-xs uppercase tracking-wider text-[#4a4a4a] shadow-md">
+          add to cart
+        </button>
+        <span id="productPrice" class="font-['Anonymous Pro'] text-lg md:text-xl text-[#4a4a4a]">115 €</span>
+      </div>
+    </div>
+  </div>
+
+  <style>
+    .box-shadow {
+      position: relative;
+    }
+  </style>
+
+  <!-- Client-side carousel script -->
+  <script>
+   const boxes = [
+  { img: 'Chloe_BoxNew.png', nameImg: 'ChloeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_BoxNew.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Sasha_BoxNew.png', nameImg: 'SashaX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade1_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_Box1New.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+
+  // repeat same order for smooth looping
+  { img: 'Chloe_BoxNew.png', nameImg: 'ChloeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_BoxNew.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Sasha_BoxNew.png', nameImg: 'SashaX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade1_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_Box1New.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Chloe_BoxNew.png', nameImg: 'ChloeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_BoxNew.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Sasha_BoxNew.png', nameImg: 'SashaX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade1_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Yasmin_Box1New.png', nameImg: 'YasminX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Chloe_BoxNew.png', nameImg: 'ChloeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+  { img: 'Jade_BoxNew.png', nameImg: 'JadeX.png', price: '115 €', desc: "Limited Edition Collector's Set" },
+];
+
+    let current = 0;
+
+    function updateBoxes() {
+      const mainBox = document.getElementById('mainBox');
+      const productPrice = document.getElementById('productPrice');
+      const modelNameImg = document.getElementById('modelNameImg');
+      
+      // Shrink animation
+      mainBox.style.transform = 'scale(0.95)';
+      
+      setTimeout(() => {
+        mainBox.src = '/' + boxes[current].img;
+        if (productPrice) productPrice.textContent = boxes[current].price;
+        if (modelNameImg) modelNameImg.src = '/' + boxes[current].nameImg;
+        
+        // Scale up animation - much slower
+        setTimeout(() => {
+          mainBox.style.transform = 'scale(1)';
+        }, 200);
+      }, 500);
+      
+      // Update all side boxes
+      for (let i = -5; i <= 5; i++) {
+        if (i === 0) continue; // Skip main box
+        const boxEl = document.getElementById(i < 0 ? `sideBox${i}` : `sideBox${i}`);
+        if (boxEl) {
+          const idx = (current + i + boxes.length) % boxes.length;
+          boxEl.src = '/' + boxes[idx].img;
+        }
+      }
+    }
+
+    function showPrev() {
+      current = (current - 1 + boxes.length) % boxes.length;
+      updateBoxes();
+    }
+
+    function showNext() {
+      current = (current + 1) % boxes.length;
+      updateBoxes();
+    }
+
+    function jumpToBox(offset) {
+      current = (current + offset + boxes.length) % boxes.length;
+      updateBoxes();
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      document.getElementById('prevBtn').addEventListener('click', showPrev);
+      document.getElementById('nextBtn').addEventListener('click', showNext);
+      
+      // Add click handlers to all side boxes
+      for (let i = -5; i <= 5; i++) {
+        if (i === 0) continue;
+        const boxEl = document.getElementById(i < 0 ? `sideBox${i}` : `sideBox${i}`);
+        if (boxEl) {
+          boxEl.addEventListener('click', () => jumpToBox(i));
+        }
+      }
+      
+      // Add to cart button functionality
+      const addToCartBtn = document.getElementById('addToCartBtn');
+      const cartBadge = document.getElementById('cartBadge');
+      
+      if (addToCartBtn && cartBadge) {
+        addToCartBtn.addEventListener('click', () => {
+          cartBadge.classList.remove('hidden');
+        });
+      }
+      
+      updateBoxes();
+    });
+  </script>
+</Layout>

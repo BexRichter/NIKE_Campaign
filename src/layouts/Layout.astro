@@ -1,0 +1,103 @@
+---
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <title>BRATZ x KNWLS NIKE</title>
+   <link rel="stylesheet" href="/src/styles/global.css" />
+  </head>
+  <body class="min-h-screen bg-black text-white">
+    <!-- Loading Screen -->
+    <div id="loadingScreen" class="fixed inset-0 z-[100] bg-black flex items-center justify-center transition-opacity duration-500">
+      <div id="loadingText" class="font-['Anonymous Pro'] text-gray-300 text-sm md:text-base tracking-widest"></div>
+    </div>
+
+    <script>
+      // Typewriter effect for loading
+      const loadingText = document.getElementById('loadingText');
+      if (loadingText) {
+        const text = 'loading...';
+        let index = 0;
+        const typeInterval = setInterval(() => {
+          if (index < text.length) {
+            loadingText.textContent += text.charAt(index);
+            index++;
+          } else {
+            clearInterval(typeInterval);
+          }
+        }, 100);
+      }
+
+      // Hide loading screen when page is fully loaded
+      window.addEventListener('load', () => {
+        const loadingScreen = document.getElementById('loadingScreen');
+        if (loadingScreen) {
+          loadingScreen.style.opacity = '0';
+          setTimeout(() => {
+            loadingScreen.style.display = 'none';
+          }, 500);
+        }
+      });
+    </script>
+
+    <!-- Top Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-[#66666641]">
+      <div class="max-w-[1600px] mx-auto px-6 py-2 flex items-center justify-between">
+        <!-- Left: Nike Chrome Logo -->
+        <a href="/" class="flex items-center">
+          <img src="/Nike.png" alt="Nike" class="h-12 w-auto object-contain" />
+        </a>
+        
+        <!-- Center: Navigation Links -->
+        <div class="hidden md:flex items-center gap-8 font-['Anonymous Pro'] text-sm">
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">Collection</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">Lookbook</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">Behind the Design</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">The Dolls</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">Shop the Drop</a>
+          <a href="#" class="text-gray-300 hover:text-white transition-colors">Press / Story</a>
+        </div>
+        
+        <!-- Right: Search, Favorites, Bag -->
+        <div class="flex items-center gap-4">
+          <!-- Search Icon -->
+          <button class="hover:opacity-70 transition-opacity text-gray-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Heart Icon -->
+          <button class="hover:opacity-70 transition-opacity text-gray-300">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+          </button>
+          <!-- Bag Icon -->
+          <button id="bagIcon" class="hover:opacity-70 transition-opacity text-gray-300 relative">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" stroke-linecap="round" stroke-linejoin="round" stroke-width="2"/>
+            </svg>
+            <span id="cartBadge" class="hidden absolute -top-1 -right-1 bg-gray-300 text-[#4a4a4a] text-xs rounded-full w-4 h-4 flex items-center justify-center font-['Anonymous Pro']">1</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+
+    <slot />
+
+    <!-- Global footer shown on every page -->
+    <footer class="fixed bottom-0 left-0 right-0 z-50 bg-[#66666641] py-4">
+      <div class="w-full max-w-[1600px] mx-auto px-8 flex flex-wrap items-center justify-center gap-x-10 gap-y-2 text-[12px] font-['Anonymous Pro'] text-gray-300">
+        <span>© 2025 Nike, Inc. All rights reserved</span>
+        <a href="#" class="hover:underline">Guides <span class="inline-block align-middle">▾</span></a>
+        <a href="#" class="hover:underline">Terms of Use</a>
+        <a href="#" class="hover:underline ml-20 md:ml-28 lg:ml-32">Terms of Sale</a>
+    
+        <a href="#" class="hover:underline">Privacy &amp; Cookie Policy</a>
+        <a href="#" class="hover:underline">Privacy &amp; Cookie Setting</a>
+      </div>
+    </footer>
+  </body>
+</html>
